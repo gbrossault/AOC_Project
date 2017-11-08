@@ -18,8 +18,10 @@ public class GenerateurImpl implements Generateur {
 	public void genererValue() throws InterruptedException {
 		while(true) {
 			this.value++;
+			System.out.println("New generated value");
 			Thread.sleep(2000);
 			for(Observateur o : this.observateurs) {
+				System.out.println("Update canal");
 				o.update(this);
 			}
 		}
@@ -27,6 +29,7 @@ public class GenerateurImpl implements Generateur {
 	
 	@Override
 	public int getValue() {
+		System.out.println("Get value : "+this.value);
 		return this.value;
 	}
 

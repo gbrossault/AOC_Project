@@ -6,7 +6,8 @@ import model.observer.Observateur;
 public class Canal implements Generateur, ObservateurGenerateur {
 	
 	private Afficheur afficheur = new Afficheur();
-
+	private Generateur subject;
+	
 	public Afficheur getAfficheur() {
 		return this.afficheur;
 	}
@@ -16,7 +17,8 @@ public class Canal implements Generateur, ObservateurGenerateur {
 	}
 	
 	public int getValue() {
-		return 0;
+		System.out.println("Get value of generator");
+		return this.subject.getValue();
 	}
 
 	@Override
@@ -29,8 +31,10 @@ public class Canal implements Generateur, ObservateurGenerateur {
 
 	@Override
 	public void update(Generateur subject) {
+		this.subject = subject;
 		if(this.afficheur != null) {
-			this.afficheur.update(subject);
+			System.out.println("Update afficheur");
+			this.afficheur.update(this);
 		}
 	}
 }

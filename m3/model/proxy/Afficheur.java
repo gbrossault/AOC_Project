@@ -15,7 +15,8 @@ public class Afficheur implements ObservateurGenerateur {
 	
 	@Override
 	public void update(Generateur subject) {
+		System.out.println("Canal get value");
 		this.value.set(subject.getValue());
+		System.out.println("Value : " + value);
 	}
-
 }
