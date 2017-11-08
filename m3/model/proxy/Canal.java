@@ -5,16 +5,9 @@ import model.observer.Observateur;
 
 public class Canal implements Generateur, ObservateurGenerateur {
 	
-	private Afficheur afficheur = new Afficheur();
+	private Afficheur afficheur = null;
 	private Generateur subject;
 	
-	public Afficheur getAfficheur() {
-		return this.afficheur;
-	}
-
-	public void setAfficheur(Afficheur afficheur) {
-		this.afficheur = afficheur;
-	}
 	
 	public int getValue() {
 		System.out.println("Get value of generator");
@@ -23,10 +16,12 @@ public class Canal implements Generateur, ObservateurGenerateur {
 
 	@Override
 	public void attach(Observateur o) {
+		this.afficheur = (Afficheur) o;
 	}
 
 	@Override
 	public void detach(Observateur o) {
+		this.afficheur = null;
 	}
 
 	@Override
