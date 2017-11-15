@@ -1,7 +1,7 @@
-package m3.model.proxy;
+package main.java.m3.model.proxy;
 
-import m3.model.observer.Observateur;
-import m3.model.observer.ObservateurGenerateur;
+import main.java.m3.model.observer.Observateur;
+import main.java.m3.model.observer.ObservateurGenerateur;
 
 public class Canal implements Generateur, ObservateurGenerateur {
 

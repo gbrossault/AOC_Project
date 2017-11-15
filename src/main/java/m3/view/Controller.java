@@ -1,4 +1,4 @@
-package m3.view;
+package main.java.m3.view;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

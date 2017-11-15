@@ -1,8 +1,8 @@
-package m3.model.proxy;
+package main.java.m3.model.proxy;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import m3.model.observer.ObservateurGenerateur;
+import main.java.m3.model.observer.ObservateurGenerateur;
 
 public class Afficheur implements ObservateurGenerateur {
 

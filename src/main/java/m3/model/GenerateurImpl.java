@@ -1,8 +1,8 @@
-package m3.model;
+package main.java.m3.model;
 
-import m3.model.observer.Observateur;
-import m3.model.proxy.Generateur;
-import m3.model.strategy.AlgoDiffusion;
+import main.java.m3.model.observer.Observateur;
+import main.java.m3.model.proxy.Generateur;
+import main.java.m3.model.strategy.AlgoDiffusion;
 
 import java.util.ArrayList;
 

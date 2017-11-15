@@ -1,6 +1,6 @@
-package m3.model.strategy;
+package main.java.m3.model.strategy;
 
-import m3.model.GenerateurImpl;
+import main.java.m3.model.GenerateurImpl;
 
 public interface AlgoDiffusion {
 

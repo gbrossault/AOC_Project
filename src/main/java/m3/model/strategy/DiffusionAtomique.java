@@ -1,4 +1,4 @@
-package m3.model.strategy;
+package main.java.m3.model.strategy;
 
 
 public class DiffusionAtomique implements AlgoDiffusion {

@@ -1,4 +1,4 @@
-package m3.model.observer;
+package main.java.m3.model.observer;
 
 import java.util.ArrayList;
 

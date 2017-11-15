@@ -1,10 +1,10 @@
-package m3.controller;
+package main.java.m3.controller;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
-import m3.model.GenerateurImpl;
-import m3.model.proxy.Afficheur;
-import m3.model.proxy.Canal;
+import main.java.m3.model.GenerateurImpl;
+import main.java.m3.model.proxy.Afficheur;
+import main.java.m3.model.proxy.Canal;
 
 
 public class Main extends Application {

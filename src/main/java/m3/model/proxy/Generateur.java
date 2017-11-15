@@ -1,6 +1,6 @@
-package m3.model.proxy;
+package main.java.m3.model.proxy;
 
-import m3.model.observer.Subject;
+import main.java.m3.model.observer.Subject;
 
 import java.util.ArrayList;
 
