@@ -1,5 +1,7 @@
 package main.java.m3.model.proxy;
 
+import main.java.m3.model.ExecutorService;
+import main.java.m3.model.Update;
 import main.java.m3.model.observer.Observateur;
 import main.java.m3.model.observer.ObservateurGenerateur;
 
@@ -9,7 +11,7 @@ public class Canal implements Generateur, ObservateurGenerateur {
     private Generateur subject;
 
 
-    public int getValue() {
+    public Future<Integer> getValue() {
         System.out.println("Get value of generator");
         return this.subject.getValue();
     }
@@ -25,11 +27,13 @@ public class Canal implements Generateur, ObservateurGenerateur {
     }
 
     @Override
-    public void update(Generateur subject) {
-        this.subject = subject;
-        if (this.afficheur != null) {
-            System.out.println("Update afficheur");
-            this.afficheur.update(this);
-        }
+    public Future<Integer> update(Generateur subject) {
+//        this.subject = subject;
+//        if (this.afficheur != null) {
+//            System.out.println("Update afficheur");
+//            this.afficheur.update(this);
+//        }
+    	Update update = new Update();
+    	ExecutorService executorService.submit(update, 1000);
     }
 }
