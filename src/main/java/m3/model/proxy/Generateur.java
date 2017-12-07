@@ -7,25 +7,37 @@ import java.util.ArrayList;
 
 public class Generateur implements AsyncSubject<Generateur> {
 
-    ArrayList<Canal> canaux = new ArrayList<>();
+    ArrayList<AsyncObserver<Generateur>> canaux = new ArrayList<>();
 
+    private int value = 0;
+    
     public int getValue() {
-    	return 0;
+    	System.out.println("Generateur -> getValue : " +this.value);
+    	return value;
     }
 
 	@Override
 	public void attach(AsyncObserver<Generateur> o) {
+		this.canaux.add(o);
 	}
 
 	@Override
 	public void detach(AsyncObserver<Generateur> o) {
+		this.canaux.remove(o);
 	}
 
 	@Override
-	public void notifyAsyncObserver() {
+	public void notifyAsyncObservers() {
+		for(AsyncObserver<Generateur> canal : this.canaux) {
+			System.out.println("Update canal");
+			canal.update(this);
+		}
 	}
 
-	public void genererValue() {
+	public void genererValue() throws InterruptedException {
+		this.value++;
+		System.out.println("New generated value");
+		this.notifyAsyncObservers();
 	}
 	
 	//public setStrategy();

@@ -24,7 +24,7 @@ public class Main extends Application {
         launch(args);
         Generateur generateur = new Generateur();
         Afficheur afficheur = new Afficheur();
-        Canal canal = new Canal();
+        Canal canal = new Canal(generateur);
         canal.attach(afficheur);
         generateur.attach(canal);
         generateur.genererValue();
