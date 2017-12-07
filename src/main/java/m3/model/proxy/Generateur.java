@@ -36,6 +36,7 @@ public class Generateur implements AsyncSubject<Generateur> {
 
 	public void genererValue() throws InterruptedException {
 		this.value++;
+		Thread.sleep(2000);
 		System.out.println("New generated value");
 		this.notifyAsyncObservers();
 	}
