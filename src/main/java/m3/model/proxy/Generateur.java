@@ -2,13 +2,15 @@ package main.java.m3.model.proxy;
 
 import main.java.m3.model.observer.AsyncObserver;
 import main.java.m3.model.observer.AsyncSubject;
+import main.java.m3.model.strategy.AlgoDiffusion;
 
 import java.util.ArrayList;
 
 public class Generateur implements AsyncSubject<Generateur> {
 
     ArrayList<AsyncObserver<Generateur>> canaux = new ArrayList<>();
-
+    AlgoDiffusion algo;
+    
     private int value = 0;
     
     public int getValue() {
@@ -33,13 +35,18 @@ public class Generateur implements AsyncSubject<Generateur> {
 			canal.update(this);
 		}
 	}
+	
+	public ArrayList<AsyncObserver<Generateur>> getCanaux(){
+		return this.canaux;
+	}
+	
+	public void setAlgo(AlgoDiffusion algo) {
+		this.algo = algo;
+	}
 
 	public void genererValue() throws InterruptedException {
 		this.value++;
-		Thread.sleep(2000);
+		this.algo.execute();
 		System.out.println("New generated value");
-		this.notifyAsyncObservers();
 	}
-	
-	//public setStrategy();
 }
