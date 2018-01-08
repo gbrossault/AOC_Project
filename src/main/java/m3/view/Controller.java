@@ -7,6 +7,7 @@ import main.java.m3.model.proxy.Canal;
 import main.java.m3.model.proxy.Generateur;
 import main.java.m3.model.strategy.AlgoDiffusion;
 import main.java.m3.model.strategy.DiffusionAtomique;
+import main.java.m3.model.strategy.DiffusionSequentielle;
 
 import java.net.URL;
 import java.util.ResourceBundle;

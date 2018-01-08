@@ -13,6 +13,14 @@ public class Generateur implements AsyncSubject<Generateur> {
     
     private int value = 0;
     
+    public Generateur() {
+    	
+    }
+    
+    public void setValue(int value) {
+    	this.value = value;
+    }
+    
     public int getValue() {
     	System.out.println("Generateur -> getValue : " +this.value);
     	return value;
@@ -45,8 +53,13 @@ public class Generateur implements AsyncSubject<Generateur> {
 	}
 
 	public void genererValue() throws InterruptedException {
-		this.value++;
-		this.algo.execute();
-		System.out.println("New generated value");
+		try {
+			Thread.sleep(1000);
+			this.value++;
+			this.algo.execute();
+			System.out.println("New generated value");
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }
