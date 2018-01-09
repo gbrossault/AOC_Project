@@ -8,7 +8,9 @@ import javafx.beans.property.SimpleIntegerProperty;
 import main.java.m3.model.GenerateurAsync;
 import main.java.m3.model.observer.Observateur;
 import main.java.m3.model.observer.ObservateurGenerateur;
+import main.java.m3.view.Controller;
 import javafx.scene.control.Label;
+import javafx.application.Platform;
 
 public class Afficheur implements Observateur<GenerateurAsync> {
 
@@ -29,7 +31,9 @@ public class Afficheur implements Observateur<GenerateurAsync> {
 		Future<Integer> newValue = s.getValue();
 		try {
 			this.value.set(newValue.get());
-			this.label.setText(value.getValue().toString());
+			Platform.runLater(() -> {
+				this.label.setText(value.getValue().toString());
+			});
 			System.out.println("Value "+name+"  : " + this.value.get());
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
