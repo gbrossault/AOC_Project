@@ -6,6 +6,7 @@ import main.java.m3.model.proxy.Generateur;
 public class DiffusionAtomique implements AlgoDiffusion {
 
 	private Generateur generateur;
+	private int i;
 	
 	public DiffusionAtomique(Generateur generateur) {
 		this.generateur = generateur;
@@ -13,12 +14,16 @@ public class DiffusionAtomique implements AlgoDiffusion {
 	
 	@Override
 	public void configure() {
+		this.i = 0;
 	}
 
 	@Override
 	public void execute() {
-		for(AsyncObserver<Generateur> canal : this.generateur.getCanaux()) {
-			canal.update(this.generateur);
+		if(i<4) {
+			for(AsyncObserver<Generateur> canal : this.generateur.getCanaux()) {
+				canal.update(this.generateur);
+				this.i++;
+			}
 		}
 	}
 

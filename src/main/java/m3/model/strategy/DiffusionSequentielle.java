@@ -7,6 +7,7 @@ public class DiffusionSequentielle implements AlgoDiffusion {
 
 	private Generateur generateur;
 	private Generateur copieGenerateur;
+	private int i;
 	
 	public DiffusionSequentielle(Generateur generateur) {
 		this.generateur = generateur;
@@ -15,13 +16,17 @@ public class DiffusionSequentielle implements AlgoDiffusion {
 	
 	@Override
 	public void configure() {
+		this.i = 0;
 	}
 
 	@Override
 	public void execute() {
 		this.copieGenerateur.setValue(this.generateur.getValue());
-		for(AsyncObserver<Generateur> canal : this.generateur.getCanaux()) {
-			canal.update(this.copieGenerateur);
+		if(i<4) {
+			for(AsyncObserver<Generateur> canal : this.generateur.getCanaux()) {
+				canal.update(this.copieGenerateur);
+				this.i++;
+			}
 		}
 	}
 

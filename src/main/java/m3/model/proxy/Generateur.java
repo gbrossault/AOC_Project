@@ -13,16 +13,11 @@ public class Generateur implements AsyncSubject<Generateur> {
     
     private int value = 0;
     
-    public Generateur() {
-    	
-    }
-    
     public void setValue(int value) {
     	this.value = value;
     }
     
     public int getValue() {
-    	System.out.println("Generateur -> getValue : " +this.value);
     	return value;
     }
 
@@ -39,7 +34,6 @@ public class Generateur implements AsyncSubject<Generateur> {
 	@Override
 	public void notifyAsyncObservers() {
 		for(AsyncObserver<Generateur> canal : this.canaux) {
-			System.out.println("Update canal");
 			canal.update(this);
 		}
 	}
@@ -52,14 +46,14 @@ public class Generateur implements AsyncSubject<Generateur> {
 		this.algo = algo;
 	}
 
-	public void genererValue() throws InterruptedException {
+	public void genererValue() {
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			this.value++;
 			this.algo.execute();
-			System.out.println("New generated value");
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
 	}
 }

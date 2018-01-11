@@ -17,15 +17,14 @@ public class Canal implements Subject<GenerateurAsync>, AsyncObserver<Generateur
 	private ScheduledExecutorService executorService;
 	private long latency;
 	
-	public Canal(Generateur generateur) {
+	public Canal(Generateur generateur, int latency) {
 		this.executorService = Executors.newScheduledThreadPool(Integer.MAX_VALUE);
 		this.generateur = generateur;
-		this.latency = 1000;
+		this.latency = latency;
 	}
 	
 	@Override
 	public Future<Integer> getValue() {
-		System.out.println("Canal -> getValue");
 		return executorService.submit(()->{
 			return this.generateur.getValue();
 		});
@@ -33,7 +32,6 @@ public class Canal implements Subject<GenerateurAsync>, AsyncObserver<Generateur
 
 	@Override
 	public Future<Void> update(Generateur g) {
-		System.out.println("canal -> update");
 		return executorService.schedule(()->{
 			notifyObservers();
 			return null;
@@ -52,7 +50,6 @@ public class Canal implements Subject<GenerateurAsync>, AsyncObserver<Generateur
 
 	@Override
 	public void notifyObservers() {
-		System.out.println("canal -> notify");
 		this.afficheur.update(this);
 	}
 

@@ -3,38 +3,28 @@ package main.java.m3.model.proxy;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import main.java.m3.model.GenerateurAsync;
 import main.java.m3.model.observer.Observateur;
-import main.java.m3.model.observer.ObservateurGenerateur;
 import main.java.m3.view.Controller;
-import javafx.scene.control.Label;
-import javafx.application.Platform;
 
 public class Afficheur implements Observateur<GenerateurAsync> {
 
-    private IntegerProperty value;
-    private String name;
-    private Label label;
+    private int value;
+    private Controller controller;
+    private int label;
 
-    public Afficheur(String name, Label label) {
-        this.value = new SimpleIntegerProperty();
-        this.value.set(0);
-        this.name = name;
+    public Afficheur(Controller controller, int label) {
+        this.value = 0;
+        this.controller = controller;
         this.label = label;
     }
 
 	@Override
 	public void update(GenerateurAsync s) {
-		System.out.println("Afficheur "+name+" -> update : " + this.value.get());
 		Future<Integer> newValue = s.getValue();
 		try {
-			this.value.set(newValue.get());
-			Platform.runLater(() -> {
-				this.label.setText(value.getValue().toString());
-			});
-			System.out.println("Value "+name+"  : " + this.value.get());
+			this.value = newValue.get();
+			this.controller.updateLabel(label, value);
 		} catch (InterruptedException | ExecutionException e) {
 			e.printStackTrace();
 		}
